@@ -13,7 +13,7 @@ interface UserCreateRequest{
 type UserCreateResponse = void
 
 @Injectable()
-export class UserCreate{
+export class UserCreate{''
     constructor(private usersRepository: UsersRepository){}
 
     async execute(

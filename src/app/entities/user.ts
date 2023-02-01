@@ -1,3 +1,4 @@
+import { UsersRepository } from '@app/repositories/users-repository';
 import { randomUUID } from 'crypto';
 
 export interface UserProps {
@@ -13,6 +14,19 @@ export interface UserProps {
   birthDate?: Date;
   createdAt?: Date;
   updatedAt?: Date;
+  active?: boolean;
+}
+
+export interface UserUpdateProps {
+  password?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  CPF?: string | null;
+  phone?: string | null;
+  country?: string | null;
+  city?: string | null;
+  photoUrl?: string | null;
+  birthDate?: Date | null;
   active?: boolean;
 }
 
@@ -97,6 +111,13 @@ export class User {
     return this.props.photoUrl;
   }
 
+  public set birthDate(birthDate: Date) {
+    this.props.birthDate;
+  }
+  public get birthDate(): Date {
+    return this.props.birthDate;
+  }
+
   public set createdAt(createdAt: Date) {
     this.props.createdAt;
   }
@@ -104,11 +125,18 @@ export class User {
     return this.props.createdAt;
   }
 
-  public updatedAt() {
+  public update(user: UserUpdateProps) {
+    this.props.password = user.password ?? this.props.password;
+    this.props.firstName = user.firstName ?? this.props.firstName;
+    this.props.lastName = user.lastName ?? this.props.lastName;
+    this.props.CPF = user.CPF ?? this.props.CPF;
+    this.props.phone = user.phone ?? this.props.phone;
+    this.props.country = user.country ?? this.props.country;
+    this.props.city = user.city ?? this.props.city;
+    this.props.photoUrl = user.photoUrl ?? this.props.photoUrl;
+    this.props.birthDate = user.birthDate ?? this.props.birthDate;
     this.props.updatedAt = new Date();
-  }
-  public getUpdatedAt() {
-    return this.props.updatedAt;
+    this.props.active = user.active ?? this.props.active;
   }
 
   public set active(active: boolean) {

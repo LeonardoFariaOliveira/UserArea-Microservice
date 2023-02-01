@@ -12,6 +12,7 @@ interface GetUserDataResponse {
   user: User;
 }
 
+@Injectable()
 export class GetUserData {
   constructor(private usersRepository: UsersRepository) {}
 
