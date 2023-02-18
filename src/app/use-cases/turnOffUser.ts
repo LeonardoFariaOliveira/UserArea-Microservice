@@ -28,7 +28,9 @@ export class TurnOffUser{
           throw new UserNotFound();
         }
 
-        user.update({active:false})
+        this.usersRepository.turnOffUser(
+          userId
+        )
 
 
     }

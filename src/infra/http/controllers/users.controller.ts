@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { UserCreate } from '@app/use-cases/create-user';
 import { GetUserData } from '@app/use-cases/get-user-data';
@@ -20,6 +21,7 @@ export class UsersController {
   @Post()
   async create(@Body() body: CreateUserBody) {
     const { email, password, firstName, lastName } = body;
+
 
     await this.userCreate.execute({
       email,
@@ -44,7 +46,7 @@ export class UsersController {
     };
   }
 
-  @Patch('/:id')
+  @Patch('/:id/')
   async update(@Param('id') id: string, @Body() body: CreateUserBody) {
     const {
       email,
@@ -73,12 +75,14 @@ export class UsersController {
       photoUrl: photo_url,
     });
 
+    console.log(user);
+
     return {
-      user: UserViewModule.toHTTP(user),
+      user: UserViewModule.toHTTP(await user),
     };
   }
 
-  @Patch('/:id')
+  @Patch('/:id/deadactivate')
   async turnOff(@Param('id') id: string) {
     await this.turnOffUser.execute({
       userId: id,
@@ -89,7 +93,7 @@ export class UsersController {
     };
   }
 
-  @Patch('/:id')
+  @Patch('/:id/activate')
   async turnOn(@Param('id') id: string) {
     await this.turnOnUser.execute({
       userId: id,

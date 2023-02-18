@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { User } from '@app/entities/user';
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from '@app/repositories/users-repository';
@@ -18,7 +19,7 @@ interface UpdateUserDataRequest {
 }
 
 interface UpdateUserDataResponse {
-  user: User;
+  user: Promise<User>
 }
 
 @Injectable()
@@ -41,26 +42,41 @@ export class UpdateUserData {
       birthDate,
     } = request;
 
+    console.log('execute a update \n\n\n');
+
     const user = await this.usersRepository.findById(id);
 
+    console.log(user);
+
     if (!user) {
+      console.log('usuario nao encontrado');
       throw new UserNotFound();
     }
 
-    user.update({
-      password,
-      firstName,
-      lastName,
-      CPF,
-      phone,
-      country,
-      city,
-      photoUrl,
-      birthDate,
-    });
+    // _id: '',
+    // props: undefined,
+    // id: '',
+    // email: '',
+    // createdAt: undefined,
+    // active: false
+
+    const userUpdated = this.usersRepository.update({
+        id:id,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        CPF: CPF,
+        phone: phone,
+        country: country,
+        city: city,
+        photoUrl: photoUrl,
+        birthDate: birthDate
+      });
+
+  
 
     return {
-      user,
+      user: userUpdated,
     };
   }
 }

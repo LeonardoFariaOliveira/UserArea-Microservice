@@ -18,6 +18,7 @@ export interface UserProps {
 }
 
 export interface UserUpdateProps {
+  id: string;
   password?: string | null;
   firstName?: string | null;
   lastName?: string | null;
@@ -125,19 +126,21 @@ export class User {
     return this.props.createdAt;
   }
 
-  public update(user: UserUpdateProps) {
-    this.props.password = user.password ?? this.props.password;
-    this.props.firstName = user.firstName ?? this.props.firstName;
-    this.props.lastName = user.lastName ?? this.props.lastName;
-    this.props.CPF = user.CPF ?? this.props.CPF;
-    this.props.phone = user.phone ?? this.props.phone;
-    this.props.country = user.country ?? this.props.country;
-    this.props.city = user.city ?? this.props.city;
-    this.props.photoUrl = user.photoUrl ?? this.props.photoUrl;
-    this.props.birthDate = user.birthDate ?? this.props.birthDate;
-    this.props.updatedAt = new Date();
-    this.props.active = user.active ?? this.props.active;
-  }
+  // public update(user: UserUpdateProps) {
+  //   console.log('atualizou \n\n\n');
+
+  //   this.props.password = user.password ?? this.props.password;
+  //   this.props.firstName = user.firstName ?? this.props.firstName;
+  //   this.props.lastName = user.lastName ?? this.props.lastName;
+  //   this.props.CPF = user.CPF ?? this.props.CPF;
+  //   this.props.phone = user.phone ?? this.props.phone;
+  //   this.props.country = user.country ?? this.props.country;
+  //   this.props.city = user.city ?? this.props.city;
+  //   this.props.photoUrl = user.photoUrl ?? this.props.photoUrl;
+  //   this.props.birthDate = user.birthDate ?? this.props.birthDate;
+  //   this.props.updatedAt = new Date();
+  //   this.props.active = user.active ?? this.props.active;
+  // }
 
   public set active(active: boolean) {
     this.props.active = active;

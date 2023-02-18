@@ -6,43 +6,48 @@ import {
   IsEmpty,
   IsDate,
   IsBoolean,
+  IsEmail,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateUserBody {
-  @IsNotEmpty()
-  @IsUUID()
-  userId: string;
-
-  @IsNotEmpty()
+  @IsEmail()
   @Length(15, 120)
-  email: string;
+  @IsOptional()
+  email?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Length(10, 20)
-  password: string;
+  password?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Length(3, 15)
-  firstName: string;
+  firstName?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Length(3, 15)
-  lastName: string;
+  lastName?: string;
 
-  @Length(11, 15)
-  CPF: string;
+  @IsOptional()
+  @Length(13)
+  CPF?: string;
 
-  @Length(9, 13)
-  phone: string;
+  @IsOptional()
+  @Length(9)
+  phone?: string;
 
-  @Length(3, 25)
-  country: string;
+  @IsOptional()
+  @Length(3)
+  city?: string;
 
-  @Length(3, 20)
-  city: string;
+  @IsOptional()
+  @Length(3)
+  country?: string;
 
-  photo_url: string;
-
+  @IsOptional()
   @IsDate()
-  birthDate: Date;
+  birthDate?: Date;
+
+  @IsOptional()
+  photo_url?: string;
 }

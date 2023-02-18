@@ -11,7 +11,11 @@ export class PrismaUsersRepository implements UsersRepository{
 
     constructor(private prismaService: PrismaService){}
 
+    
+
     async create(user: User): Promise<void> {
+
+        console.log("criou");
         const raw = PrismaUserMapper.toPrisma(user)
         await this.prismaService.user.create({
             data:raw
@@ -33,6 +37,8 @@ export class PrismaUsersRepository implements UsersRepository{
     }
 
     async update(user: User): Promise<User> {
+        
+        console.log("raw")
         const raw = PrismaUserMapper.toPrisma(user)
 
         const userUpdated =await this.prismaService.user.update({
@@ -42,7 +48,10 @@ export class PrismaUsersRepository implements UsersRepository{
             data:raw
         })
 
+        console.log(userUpdated)
+
         if(!userUpdated){
+            console.log("usuario não encontrado")
             return null
         }
 

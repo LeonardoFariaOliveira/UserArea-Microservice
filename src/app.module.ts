@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
 import { HTTPModule } from '@infra/http/http.module';
 import { DatabaseModule } from '@infra/database/database.module';
 
